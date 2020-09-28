@@ -1,17 +1,25 @@
+  
+const http = require('../../lib/http.js').http;
+
 Page({
   data: {
     account: "",
-    password: "",
-    isBinding:true
+    password_digest: "",
   },
-  watchAccount(){
+  watchAccount(event){
+    this.setData({ account: event.detail.value })
   },
-  watchPassword(){
+  watchPassword(event){
+    this.setData({ password_digest: event.detail.value })
   },
-  toGoSignUp(){
-    this.setData({isBinding:false})
-  },
-  toGoBinding(){
-    this.setData({isBinding:true})
+  submit(){
+    http.post('/bindings',{
+      account: this.data.account, 
+      password_digest: this.data.password_digest
+    })
+    .then(response => {
+      wx.setStorageSync('me', response.data.resource)
+      wx.reLaunch({ url: "/pages/home/home" })
+    })
   },
 })
