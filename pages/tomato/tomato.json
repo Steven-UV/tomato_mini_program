@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "f-button":"../../components/button/button",
+    "f-clock":"../../components/clock/clock",
+    "f-confirm":"../../components/confirm/confirm"
+  }
+}

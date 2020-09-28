@@ -1,0 +1,21 @@
+<view class="container">
+  <view class="clock">
+    <f-clock text="{{time}}" fontSize="52"></f-clock>
+  </view>
+  <view wx:if="{{!againButtonVisible}}">
+    <view class="stop">
+      <f-button type="change" size="mini" text="暂停" bindtap="clearTimer" wx:if="{{timerStatus==='start'}}"></f-button>
+      <f-button type="change" size="mini" text="继续" bindtap="startTimer" wx:else></f-button>
+    </view>
+    <view class="abandon">
+      <f-button type="default" size="mini" text="放弃" bindtap="showConfirm"></f-button>
+    </view>
+  </view>
+  <view class="again" wx:else>
+    <f-button type="change" size="mini" text="再来一组" bindtap="againTimer"></f-button>
+  </view>
+  <f-confirm visible="{{confirmVisible}}" bindconfirm="confirmAbandon" bindcancel="hideConfirm" placeholder="为什么要放弃呢">
+  </f-confirm>
+  <f-confirm visible="{{finishConfirmVisible}}" bindconfirm="confirmFinish" bindcancel="confirmCancel" placeholder="完成了什么"></f-confirm>
+
+</view>
